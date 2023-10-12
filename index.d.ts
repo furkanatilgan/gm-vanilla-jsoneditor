@@ -34611,6 +34611,8 @@ type OnSortModal = (props: SortModalCallback) => void;
 type OnTransformModal = (props: TransformModalCallback) => void;
 type OnJSONEditorModal = (props: JSONEditorModalCallback) => void;
 type FindNextInside = (path: JSONPath) => JSONSelection | undefined;
+type HandleExpose = (path: JSONPath) => void;
+type KeyStartAdornment = (path: JSONPath) => any;
 interface SearchResult {
     items: ExtendedSearchResultItem[];
     itemsMap: JSONPointerMap<ExtendedSearchResultItem[]>;
@@ -34713,6 +34715,7 @@ interface JSONEditorPropsOptional {
     validator?: Validator | null;
     validationParser?: JSONParser;
     pathParser?: JSONPathParser;
+    keyStartAdornment?: KeyStartAdornment;
     queryLanguages?: QueryLanguage[];
     queryLanguageId?: string;
     onChangeQueryLanguage?: OnChangeQueryLanguage;
@@ -34724,6 +34727,7 @@ interface JSONEditorPropsOptional {
     onError?: OnError;
     onFocus?: OnFocus;
     onBlur?: OnBlur;
+    handleExpose?: HandleExpose;
 }
 interface JSONEditorContext {
     readOnly: boolean;
@@ -34899,9 +34903,10 @@ declare const __propDef$6: {
         onError?: OnError | undefined;
         onFocus?: OnFocus | undefined;
         onBlur?: OnBlur | undefined;
+        handleExpose?: HandleExpose | undefined;
         /**
            * `sx` prop doesn't work, styles should be given with `style` prop.
-           */ keyStartAdornment?: ((path: JSONPath) => any) | undefined;
+           */ keyStartAdornment?: KeyStartAdornment | undefined;
         get?: (() => Content) | undefined;
         set?: ((newContent: Content) => Promise<void>) | undefined;
         update?: ((updatedContent: Content) => Promise<void>) | undefined;
@@ -36173,4 +36178,4 @@ declare function onEscape(element: Element, callback: Callback): {
 declare function isContentParseError(contentErrors: unknown): contentErrors is ContentParseError;
 declare function isContentValidationErrors(contentErrors: unknown): contentErrors is ContentValidationErrors;
 
-export { AbsolutePopupOptions, AfterPatchCallback, AfterSelection, AjvValidatorOptions, BooleanToggle, CaretPosition, CaretType, ClipboardValues, ColorPicker, Content, ContentErrors, ContentParseError, ContentValidationErrors, ContextMenuColumn, ContextMenuItem, ContextMenuRow, DocumentState, DragInsideAction, DragInsideProps, DraggingState, DropdownButtonItem, EditableValue, EnumValue, EscapeValue, ExtendedSearchResultItem, FindNextInside, FontAwesomeIcon, HistoryItem, InsertType, InsideSelection, JSONContent, JsonEditor as JSONEditor, JSONEditorContext, JSONEditorModalCallback, JSONEditorPropsOptional, JSONNodeItem, JSONNodeProp, JSONParser, JSONPatchDocument, JSONPatchResult, JSONPath, JSONPathParser, JSONPointer, JSONPointerMap, JSONSchema, JSONSchemaDefinitions, JSONSchemaEnum, JSONSelection, JSONValue, KeySelection, MenuButton, MenuButtonItem, MenuDropDownButton, MenuItem, MenuLabel, MenuSeparator, MenuSeparatorItem, MenuSpace, MenuSpaceItem, MessageAction, Mode, MultiSelection, NestedValidationError, OnBlur, OnChange, OnChangeMode, OnChangeQueryLanguage, OnChangeStatus, OnChangeText, OnClassName, OnContextMenu, OnError, OnExpand, OnFind, OnFocus, OnJSONEditorModal, OnPaste, OnPasteJson, OnPatch, OnRenderMenu, OnRenderMenuWithoutContext, OnRenderValue, OnSelect, OnSort, OnSortModal, OnTransformModal, ParseError, PastedJson, PopupEntry, QueryLanguage, QueryLanguageOptions, ReadonlyValue, RenderMenuContext, RenderValueComponentDescription, RenderValueProps, RenderValuePropsOptional, RenderedItem, RichValidationError, SearchField, SearchResult, SearchResultItem, Section, SelectionType, SortDirection, SortModalCallback, SortedColumn, TableCellIndex, TextContent, TextLocation, TimestampTag, TransformModalCallback, TransformModalOptions, TreeModeContext, UnescapeValue, ValidationError$1 as ValidationError, ValidationSeverity, Validator, ValueNormalization, ValueSelection, VisibleSection, compileJSONPointer, compileJSONPointerProp, createAfterSelection, createAjvValidator, createInsideSelection, createKeySelection, createMultiSelection, createValueSelection, deleteIn, estimateSerializedSize, existsIn, getIn, immutableJSONPatch, insertAt, isAfterSelection, isContent, isContentParseError, isContentValidationErrors, isEditingSelection, isEqualParser, isInsideSelection, isJSONContent, isKeySelection, isLargeContent, isMultiSelection, isTextContent, isValueSelection, javascriptQueryLanguage, jmespathQueryLanguage, lodashQueryLanguage, onEscape, parseFrom, parseJSONPath, parseJSONPointer, parsePath, renderJSONSchemaEnum, renderValue, resizeObserver, revertJSONPatch, setIn, stringifyJSONPath, toJSONContent, toTextContent, updateIn };
+export { AbsolutePopupOptions, AfterPatchCallback, AfterSelection, AjvValidatorOptions, BooleanToggle, CaretPosition, CaretType, ClipboardValues, ColorPicker, Content, ContentErrors, ContentParseError, ContentValidationErrors, ContextMenuColumn, ContextMenuItem, ContextMenuRow, DocumentState, DragInsideAction, DragInsideProps, DraggingState, DropdownButtonItem, EditableValue, EnumValue, EscapeValue, ExtendedSearchResultItem, FindNextInside, FontAwesomeIcon, HandleExpose, HistoryItem, InsertType, InsideSelection, JSONContent, JsonEditor as JSONEditor, JSONEditorContext, JSONEditorModalCallback, JSONEditorPropsOptional, JSONNodeItem, JSONNodeProp, JSONParser, JSONPatchDocument, JSONPatchResult, JSONPath, JSONPathParser, JSONPointer, JSONPointerMap, JSONSchema, JSONSchemaDefinitions, JSONSchemaEnum, JSONSelection, JSONValue, KeySelection, KeyStartAdornment, MenuButton, MenuButtonItem, MenuDropDownButton, MenuItem, MenuLabel, MenuSeparator, MenuSeparatorItem, MenuSpace, MenuSpaceItem, MessageAction, Mode, MultiSelection, NestedValidationError, OnBlur, OnChange, OnChangeMode, OnChangeQueryLanguage, OnChangeStatus, OnChangeText, OnClassName, OnContextMenu, OnError, OnExpand, OnFind, OnFocus, OnJSONEditorModal, OnPaste, OnPasteJson, OnPatch, OnRenderMenu, OnRenderMenuWithoutContext, OnRenderValue, OnSelect, OnSort, OnSortModal, OnTransformModal, ParseError, PastedJson, PopupEntry, QueryLanguage, QueryLanguageOptions, ReadonlyValue, RenderMenuContext, RenderValueComponentDescription, RenderValueProps, RenderValuePropsOptional, RenderedItem, RichValidationError, SearchField, SearchResult, SearchResultItem, Section, SelectionType, SortDirection, SortModalCallback, SortedColumn, TableCellIndex, TextContent, TextLocation, TimestampTag, TransformModalCallback, TransformModalOptions, TreeModeContext, UnescapeValue, ValidationError$1 as ValidationError, ValidationSeverity, Validator, ValueNormalization, ValueSelection, VisibleSection, compileJSONPointer, compileJSONPointerProp, createAfterSelection, createAjvValidator, createInsideSelection, createKeySelection, createMultiSelection, createValueSelection, deleteIn, estimateSerializedSize, existsIn, getIn, immutableJSONPatch, insertAt, isAfterSelection, isContent, isContentParseError, isContentValidationErrors, isEditingSelection, isEqualParser, isInsideSelection, isJSONContent, isKeySelection, isLargeContent, isMultiSelection, isTextContent, isValueSelection, javascriptQueryLanguage, jmespathQueryLanguage, lodashQueryLanguage, onEscape, parseFrom, parseJSONPath, parseJSONPointer, parsePath, renderJSONSchemaEnum, renderValue, resizeObserver, revertJSONPatch, setIn, stringifyJSONPath, toJSONContent, toTextContent, updateIn };
