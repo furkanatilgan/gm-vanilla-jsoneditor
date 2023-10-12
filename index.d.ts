@@ -34899,6 +34899,9 @@ declare const __propDef$6: {
         onError?: OnError | undefined;
         onFocus?: OnFocus | undefined;
         onBlur?: OnBlur | undefined;
+        /**
+           * `sx` prop doesn't work, styles should be given with `style` prop.
+           */ keyStartAdornment?: ((path: JSONPath) => any) | undefined;
         get?: (() => Content) | undefined;
         set?: ((newContent: Content) => Promise<void>) | undefined;
         update?: ((updatedContent: Content) => Promise<void>) | undefined;
