@@ -1,7 +1,7 @@
 {
   "name": "gm-vanilla-jsoneditor",
   "description": "A web-based tool to view, edit, format, transform, and validate JSON",
-  "version": "0.16.2",
+  "version": "0.16.3",
   "homepage": "https://jsoneditoronline.org",
   "repository": {
     "type": "git",
